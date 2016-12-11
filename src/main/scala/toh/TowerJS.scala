@@ -149,7 +149,7 @@ object SvgView{
 
     def towerView(tower: TowerState) =
       svg(height:=H, width:= W)(
-        rect(height:= H, width:= W, fill:="green"),
+        rect(height:= H, width:= W, fill:="orange"),
         line(x1:= 0, y1:= B, x2:= W, y2:= B, stroke:="black", strokeWidth:= 3)
       )(towerPiles(tower) : _*
       )
