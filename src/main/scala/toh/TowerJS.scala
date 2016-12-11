@@ -36,9 +36,9 @@ object TowerJS extends JSApp{
 
     val towDiv = div.render
 
-    val startStopBox = input(`type` := "button", value := "Start", `class` := "button2").render
+    val startStopBox = input(`type` := "button", value := "Start", `class` := "button1").render
 
-    val resetBox = input(`type` := "button", value := "Reset", `class` := "button3").render
+    val resetBox = input(`type` := "button", value := "Reset", `class` := "button5").render
 
 
     def showTower(tow: TowerState) = {
@@ -57,6 +57,8 @@ object TowerJS extends JSApp{
              else {
                running = false
                startStopBox.value = "Start"
+               startStopBox.classList.remove("button3")
+               startStopBox.classList.add("button1")
                dom.window.clearTimeout(intervalId)
              }
             showTower(towerState)
@@ -86,12 +88,16 @@ object TowerJS extends JSApp{
       // dom.window.clearInterval(intervalId)
       running = true
       startStopBox.value = "Stop"
+      startStopBox.classList.remove("button1")
+      startStopBox.classList.add("button3")
       showMoves(state, moves)
     }
 
     def stop() = {
       running = false
       startStopBox.value = "Start"
+      startStopBox.classList.remove("button3")
+      startStopBox.classList.add("button1")
       dom.window.clearTimeout(intervalId)
     }
 
