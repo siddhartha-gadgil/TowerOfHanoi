@@ -1,6 +1,6 @@
 package toh
 
- import org.scalajs.dom
+import org.scalajs.dom
 //import org.scalajs.dom.html
 
 import org.scalajs.dom._
@@ -20,7 +20,7 @@ import scala.scalajs.js.JSApp
 
 //import scala.scalajs.js.Dynamic.{global => g}
 
-object TowerJS extends JSApp{
+object TowerJS extends JSApp {
   def main(): Unit = {
     var intervalId: Int = 0
 
@@ -36,32 +36,35 @@ object TowerJS extends JSApp{
 
     val towDiv = div.render
 
-    val startStopBox = input(`type` := "button", value := "Start", `class` := "button1").render
+    val startStopBox = input(
+        `type` := "button", value := "Start", `class` := "button1").render
 
-    val resetBox = input(`type` := "button", value := "Reset", `class` := "button5").render
-
+    val resetBox = input(
+        `type` := "button", value := "Reset", `class` := "button5").render
 
     def showTower(tow: TowerState) = {
       towDiv.innerHTML = ""
       towDiv.appendChild(SvgView.towerView(tow).render)
     }
 
-    def showMoves(init: TowerState, moves: Vector[Move], delay: Double = 1000) = {
-        towerState = init
-        var anim = moves
-        intervalId = dom.window.setInterval(() =>
-          {
-            if (anim.size > 0)
-            {towerState = anim.head(towerState)
-             anim = anim.tail}
-             else {
-               running = false
-               startStopBox.value = "Start"
-               startStopBox.classList.remove("button3")
-               startStopBox.classList.add("button1")
-               dom.window.clearTimeout(intervalId)
-             }
-            showTower(towerState)
+    def showMoves(
+        init: TowerState, moves: Vector[Move], delay: Double = 1000) = {
+      towerState = init
+      var anim = moves
+      intervalId = dom.window.setInterval(
+          () =>
+            {
+              if (anim.size > 0) {
+                towerState = anim.head(towerState)
+                anim = anim.tail
+              } else {
+                running = false
+                startStopBox.value = "Start"
+                startStopBox.classList.remove("button3")
+                startStopBox.classList.add("button1")
+                dom.window.clearTimeout(intervalId)
+              }
+              showTower(towerState)
           },
           delay)
     }
@@ -70,16 +73,14 @@ object TowerJS extends JSApp{
 
     def goal = TowerState.simple(numRings, Left)
 
+    val ringsBox = input(`type` := "text", value := numRings).render
 
-
-
-    val ringsBox = input (`type` := "text", value:= numRings).render
-
-    ringsBox.onchange = (_ : dom.Event) => {
-      stop()
-      numRings = ringsBox.value.toInt
-      towerState = TowerState.simple(numRings, Middle)
-      showTower(towerState)
+    ringsBox.onchange = (_: dom.Event) =>
+      {
+        stop()
+        numRings = ringsBox.value.toInt
+        towerState = TowerState.simple(numRings, Middle)
+        showTower(towerState)
     }
 
     def start() = {
@@ -101,23 +102,25 @@ object TowerJS extends JSApp{
       dom.window.clearTimeout(intervalId)
     }
 
-    def startStop = (_ : dom.Event) => if  (running) stop() else start()
+    def startStop = (_: dom.Event) => if (running) stop() else start()
 
-    val d = div(towDiv, span("Number of rings:"), ringsBox, startStopBox, resetBox)
+    val d = div(
+        towDiv, span("Number of rings:"), ringsBox, startStopBox, resetBox)
 
     startStopBox.onclick = startStop
 
-    resetBox.onclick = (_ : dom.Event) => {
-      if (running) stop() else ()
-      towerState = TowerState.simple(numRings, Middle)
-      showTower(towerState)
+    resetBox.onclick = (_: dom.Event) =>
+      {
+        if (running) stop() else ()
+        towerState = TowerState.simple(numRings, Middle)
+        showTower(towerState)
     }
 
     jsDiv.appendChild(d.render)
   }
 }
 
-object SvgView{
+object SvgView {
   import scalatags.JsDom.svgTags._
   import scalatags.JsDom.svgAttrs._
 
@@ -126,7 +129,8 @@ object SvgView{
   val B = 300
   val sc = 8
 
-  def colour(n: Int) = Vector("blue", "midnightblue",  "indigo", "aqua", "navy")(n % 5)
+  def colour(n: Int) =
+    Vector("blue", "midnightblue", "indigo", "aqua", "navy")(n % 5)
 
   // val box =  svg(height:=H, width:= W)(
   //   rect(height:= H, width:= W, fill:="white"),
@@ -134,9 +138,14 @@ object SvgView{
   // )
 
   def pile(centre: Int, rings: Vector[Int]) = {
-     rings.zipWithIndex map {case (n, j) =>
-       rect(x := centre  - (n * sc), y := B - (sc * 1.5 * (j + 1)), fill := colour(n), height := sc * 3 / 2, width := sc * n * 2)
-      }
+    rings.zipWithIndex map {
+      case (n, j) =>
+        rect(x := centre - (n * sc),
+             y := B - (sc * 1.5 * (j + 1)),
+             fill := colour(n),
+             height := sc * 3 / 2,
+             width := sc * n * 2)
+    }
   }
 
   def towerPiles(tower: TowerState) =
@@ -147,12 +156,14 @@ object SvgView{
         pile(c, rings)
     }.flatten
 
-    def towerView(tower: TowerState) =
-      svg(height:=H, width:= W)(
-        rect(height:= H, width:= W, fill:="orange"),
-        line(x1:= 0, y1:= B, x2:= W, y2:= B, stroke:="black", strokeWidth:= 3)
-      )(towerPiles(tower) : _*
-      )
-
-
+  def towerView(tower: TowerState) =
+    svg(height := H, width := W)(
+        rect(height := H, width := W, fill := "orange"),
+        line(x1 := 0,
+             y1 := B,
+             x2 := W,
+             y2 := B,
+             stroke := "black",
+             strokeWidth := 3)
+    )(towerPiles(tower): _*)
 }

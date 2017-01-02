@@ -13,3 +13,5 @@ lazy val root = (project in file(".")).
         "com.lihaoyi" %%% "scalatags" % "0.6.1",
         "org.scala-js" %%% "scalajs-dom" % "0.9.0")
   )
+
+initialCommands in console := "import toh._; import TowerSolver._"
