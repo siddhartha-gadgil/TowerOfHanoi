@@ -52,6 +52,16 @@ case class TowerState(rings: Int, ringMap: Map[Int, Peg]) {
 object TowerState {
   def simple(rings: Int, peg: Peg) =
     TowerState(rings, ((1 to rings) map (_ -> peg)).toMap)
+
+  val rnd = new scala.util.Random()
+
+  def random(rings: Int) =
+    TowerState(rings,
+        {(1 to rings).toVector map (
+        (j) => (j , Vector(Left, Right, Middle)((rnd.nextInt(3)))))}.toMap
+    )
+
+
 }
 
 case class Move(source: Peg, sink: Peg) {

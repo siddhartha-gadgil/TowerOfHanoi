@@ -24,11 +24,15 @@ object TowerJS extends JSApp {
   def main(): Unit = {
     var intervalId: Int = 0
 
+    var speed = 1.0
+
     var towerState = TowerState.simple(10, Middle)
 
     var numRings = 10
 
     var running = false
+
+    var counter = 0
 
     val jsDiv = document.getElementById("js-div")
 
@@ -37,18 +41,33 @@ object TowerJS extends JSApp {
     val towDiv = div.render
 
     val startStopBox = input(
-        `type` := "button", value := "Start", `class` := "button1").render
+        `type` := "button", value := "Start", `class` := "input-btn btn btn-success").render
 
     val resetBox = input(
-        `type` := "button", value := "Reset", `class` := "button5").render
+        `type` := "button", value := "Reset", `class` := "input-btn btn btn-warning").render
+
+    val randomBox = input(
+        `type` := "button", value := "Random Tower", `class` := "input-btn btn btn-primary").render
+
+    val speedBar = input(
+      `type` := "range", value := "10", min := "0", max := "30", step:= "1", id :="speed"
+    ).render
+
+    def counterSpanHTML = span(`class` := "h4")(span("Moves: "), span(`class` := "bg-info")(s"$counter")).render
+
+    val counterDiv = div(`class` := "col-md-2")(counterSpanHTML).render
+
+
 
     def showTower(tow: TowerState) = {
       towDiv.innerHTML = ""
       towDiv.appendChild(SvgView.towerView(tow).render)
+      counterDiv.innerHTML = ""
+      counterDiv.appendChild(counterSpanHTML)
     }
 
     def showMoves(
-        init: TowerState, moves: Vector[Move], delay: Double = 1000) = {
+        init: TowerState, moves: Vector[Move], delay: Double = 10000/(math.pow(10, speed))) = {
       towerState = init
       var anim = moves
       intervalId = dom.window.setInterval(
@@ -57,11 +76,12 @@ object TowerJS extends JSApp {
               if (anim.size > 0) {
                 towerState = anim.head(towerState)
                 anim = anim.tail
+                counter += 1
               } else {
                 running = false
                 startStopBox.value = "Start"
-                startStopBox.classList.remove("button3")
-                startStopBox.classList.add("button1")
+                startStopBox.classList.remove("btn-danger")
+                startStopBox.classList.add("btn-success")
                 dom.window.clearTimeout(intervalId)
               }
               showTower(towerState)
@@ -73,7 +93,7 @@ object TowerJS extends JSApp {
 
     def goal = TowerState.simple(numRings, Left)
 
-    val ringsBox = input(`type` := "text", value := numRings).render
+    val ringsBox = input(`type` := "text", value := numRings, size := "2").render
 
     ringsBox.onchange = (_: dom.Event) =>
       {
@@ -89,30 +109,52 @@ object TowerJS extends JSApp {
       // dom.window.clearInterval(intervalId)
       running = true
       startStopBox.value = "Stop"
-      startStopBox.classList.remove("button1")
-      startStopBox.classList.add("button3")
+      startStopBox.classList.remove("btn-success")
+      startStopBox.classList.add("btn-danger")
       showMoves(state, moves)
     }
 
     def stop() = {
       running = false
       startStopBox.value = "Start"
-      startStopBox.classList.remove("button3")
-      startStopBox.classList.add("button1")
+      startStopBox.classList.remove("btn-danger")
+      startStopBox.classList.add("btn-success")
       dom.window.clearTimeout(intervalId)
     }
 
     def startStop = (_: dom.Event) => if (running) stop() else start()
 
+
     val d = div(
-        towDiv, span("Number of rings:"), ringsBox, startStopBox, resetBox)
+        towDiv,
+        div(`class` := "row")(
+          div(`class`:= "col-md-5")(
+          label("Number of rings :"), ringsBox, span(" "),
+          startStopBox, span(" "), resetBox, span(" "), randomBox),
+          counterDiv,
+          div(`class` := "col-md-2")(label(`for` := "speed")("Speed:"), speedBar))
+    )
 
     startStopBox.onclick = startStop
+
+    speedBar.onchange = (_ : dom.Event) => {
+      stop()
+      speed = speedBar.value.toDouble / 10
+    }
 
     resetBox.onclick = (_: dom.Event) =>
       {
         if (running) stop() else ()
         towerState = TowerState.simple(numRings, Middle)
+        counter = 0
+        showTower(towerState)
+    }
+
+    randomBox.onclick = (_: dom.Event) =>
+      {
+        if (running) stop() else ()
+        towerState = TowerState.random(numRings)
+        counter = 0
         showTower(towerState)
     }
 
@@ -130,7 +172,7 @@ object SvgView {
   val sc = 8
 
   def colour(n: Int) =
-    Vector("blue", "midnightblue", "indigo", "aqua", "navy")(n % 5)
+    Vector("red", "magenta",  "orangered", "tomato", "darkorange")(n % 5)
 
   // val box =  svg(height:=H, width:= W)(
   //   rect(height:= H, width:= W, fill:="white"),
@@ -144,7 +186,9 @@ object SvgView {
              y := B - (sc * 1.5 * (j + 1)),
              fill := colour(n),
              height := sc * 3 / 2,
-             width := sc * n * 2)
+             width := sc * n * 2,
+            strokeWidth := 1,
+            stroke := "black")
     }
   }
 
@@ -158,12 +202,12 @@ object SvgView {
 
   def towerView(tower: TowerState) =
     svg(height := H, width := W)(
-        rect(height := H, width := W, fill := "orange"),
-        line(x1 := 0,
-             y1 := B,
-             x2 := W,
-             y2 := B,
-             stroke := "black",
+        rect(height := H, width := W, fill := "skyblue"),
+        rect(x := 0,
+             y := B,
+             width := W,
+             height := H - B,
+             fill := "green",
              strokeWidth := 3)
     )(towerPiles(tower): _*)
 }
