@@ -15,3 +15,5 @@ lazy val root = (project in file(".")).
   )
 
 initialCommands in console := "import toh._; import TowerSolver._"
+
+libraryDependencies += "com.lihaoyi" % "ammonite" % "1.0.3"  cross CrossVersion.full
