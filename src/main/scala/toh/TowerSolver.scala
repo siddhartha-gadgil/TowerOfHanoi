@@ -4,11 +4,11 @@ sealed class Peg {
   def ->(that: Peg) = Move(this, that)
 }
 
-case object Left extends Peg
-case object Middle extends Peg
-case object Right extends Peg
-
 object Peg {
+  case object Left extends Peg
+  case object Middle extends Peg
+  case object Right extends Peg
+
   def otherPeg(first: Peg, second: Peg): Peg =
     Vector(Left, Right, Middle).filter((x) => x != first && x != second).head
 }
@@ -16,16 +16,19 @@ object Peg {
 object TowerSolver {
   def solve(start: TowerState, goal: TowerState): Vector[Move] = {
     import start.rings
-    if (rings == 0) Vector()
+    if (rings == 0) Vector() // For no rings, no moves needed
     else {
-      val source = start.ringMap(rings)
-      val sink = goal.ringMap(rings)
-      if (source == sink) solve(start.init, goal.init)
+      val source = start.ringMap(rings) // largest peg for start
+      val sink = goal.ringMap(rings)  // largest peg for finish
+      if (source == sink) solve(start.init, goal.init) // case: largest ring is in correct place
       else {
-        val third = Peg.otherPeg(source, sink)
-        val onThird = TowerState.simple(rings - 1, third)
-        (solve(start.init, onThird) :+ Move(source, sink)) ++ solve(
-            onThird, TowerState.simple(rings - 1, sink))
+        val third = Peg.otherPeg(source, sink) // the peg not having largest ring in start or goal
+        val onThird = TowerState.simple(rings - 1, third) // set goal for all but largest ring
+        (solve(start.init, onThird) :+ // move all but largest ring to `third peg`
+          Move(source, sink)) ++ // move largest peg
+          solve(
+            onThird, TowerState.simple(rings - 1, sink)
+          ) // move all but largest peg from third peg
       }
     }
   }
@@ -34,7 +37,7 @@ object TowerSolver {
     solve(TowerState.simple(rings, start), TowerState.simple(rings, goal))
 
   def apply(rings: Int) =
-    solve(TowerState.simple(rings, Middle), TowerState.simple(rings, Left))
+    solve(TowerState.simple(rings, Peg.Middle), TowerState.simple(rings, Peg.Left))
 }
 
 case class TowerState(rings: Int, ringMap: Map[Int, Peg]) {
@@ -54,6 +57,8 @@ object TowerState {
     TowerState(rings, ((1 to rings) map (_ -> peg)).toMap)
 
   val rnd = new scala.util.Random()
+
+  import Peg._
 
   def random(rings: Int) =
     TowerState(rings,

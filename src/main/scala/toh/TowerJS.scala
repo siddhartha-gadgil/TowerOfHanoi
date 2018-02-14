@@ -1,24 +1,13 @@
 package toh
 
 import org.scalajs.dom
-//import org.scalajs.dom.html
-
 import org.scalajs.dom._
-// import scalajs.js.annotation._
 import scalatags.JsDom.all._
-//
-// import scalatags.JsDom.svgTags._
-// import scalatags.JsDom.{svgAttrs => svga}
-//
-import scala.scalajs.js.JSApp
-//
-// import scala.scalajs.js
-//
-// import dom.ext._
-//
-// import scalajs.concurrent.JSExecutionContext.Implicits.queue
 
-//import scala.scalajs.js.Dynamic.{global => g}
+import scala.scalajs.js.JSApp
+
+
+import Peg._
 
 object TowerJS extends JSApp {
   def main(): Unit = {
@@ -35,8 +24,6 @@ object TowerJS extends JSApp {
     var counter = 0
 
     val jsDiv = document.getElementById("js-div")
-
-    // import scalatags.JsDom.implicits._
 
     val towDiv = div.render
 
@@ -173,11 +160,6 @@ object SvgView {
 
   def colour(n: Int) =
     Vector("red", "magenta",  "orangered", "tomato", "darkorange")(n % 5)
-
-  // val box =  svg(height:=H, width:= W)(
-  //   rect(height:= H, width:= W, fill:="white"),
-  //   line(x1:= 0, y1:= B, x2:= W, y2:= B, stroke:="white", strokeWidth:= 3)
-  // )
 
   def pile(centre: Int, rings: Vector[Int]) = {
     rings.zipWithIndex map {
