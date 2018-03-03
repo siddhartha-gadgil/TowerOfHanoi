@@ -116,7 +116,7 @@ object TowerJS extends JSApp {
         towDiv,
         div(`class` := "row")(
           div(`class`:= "col-md-5")(
-          label("Number of rings :"), ringsBox, span(" "),
+          label("Rings :"), ringsBox, span(" "),
           startStopBox, span(" "), resetBox, span(" "), randomBox),
           counterDiv,
           div(`class` := "col-md-2")(label(`for` := "speed")("Speed:"), speedBar))
