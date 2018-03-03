@@ -18,9 +18,9 @@ object TowerSolver {
     import start.rings
     if (rings == 0) Vector() // For no rings, no moves needed
     else {
-      val source = start.ringMap(rings) // largest peg for start
-      val sink = goal.ringMap(rings)  // largest peg for finish
-      if (source == sink) solve(start.init, goal.init) // case: largest ring is in correct place
+      val source = start.ringMap(rings) // largest peg for starting tower
+      val sink = goal.ringMap(rings)  // largest peg for goal tower
+      if (source == sink) solve(start.init, goal.init) // if largest ring is in correct place, ignore it and solve
       else {
         val third = Peg.otherPeg(source, sink) // the peg not having largest ring in start or goal
         val onThird = TowerState.simple(rings - 1, third) // set goal for all but largest ring
