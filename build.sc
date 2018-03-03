@@ -17,7 +17,7 @@ object toh extends ScalaJSModule {
 
   def pack = T {
     def js = fastOpt()
-    cp.over(js.path, pwd/ "public" / "out.js")
+    cp.over(js.path, pwd/ "docs" / "out.js")
     js
   }
 }
