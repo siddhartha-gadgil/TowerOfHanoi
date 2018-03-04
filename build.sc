@@ -15,7 +15,7 @@ object toh extends ScalaJSModule {
     ivy"com.lihaoyi::scalatags::0.6.7"
   )
 
-  def pack = T {
+  def pack() = T.command {
     def js = fastOpt()
     cp.over(js.path, pwd/ "docs" / "out.js")
     js
