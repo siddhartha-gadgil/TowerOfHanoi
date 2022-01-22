@@ -3,13 +3,13 @@ package toh
 import org.scalajs.dom
 import org.scalajs.dom._
 import scalatags.JsDom.all._
-
-import scala.scalajs.js.JSApp
-
+import scala.scalajs.js.annotation._
 
 import Peg._
 
-object TowerJS extends JSApp {
+@JSExportTopLevel("Toh")
+object TowerJS  {
+  @JSExport
   def main(): Unit = {
     var intervalId: Int = 0
 
