@@ -10,7 +10,16 @@ object Peg {
   case object Right extends Peg
 
   def otherPeg(first: Peg, second: Peg): Peg =
-    Vector(Left, Right, Middle).filter((x) => x != first && x != second).head
+    Vector(Left, Middle, Right).filter((x) => x != first && x != second).head
+
+  val all: Vector[Peg] = Vector(Left, Middle, Right)
+  val pairs: Vector[(Peg, Peg)] = {
+    for {
+      a <- all
+      b <- all
+      if a != b
+    } yield (a, b)
+  }.toVector
 }
 
 object TowerSolver {
@@ -41,7 +50,7 @@ object TowerSolver {
 }
 
 case class TowerState(rings: Int, ringMap: Map[Int, Peg]) {
-  def onPeg(peg: Peg) = (1 to rings).toVector.filter(ringMap(_) == peg)
+  def onPeg(peg: Peg): Vector[Int] = (1 to rings).toVector.filter(ringMap(_) == peg)
 
   def init = TowerState(rings - 1, ringMap filter (_._1 != rings))
 
@@ -50,8 +59,15 @@ case class TowerState(rings: Int, ringMap: Map[Int, Peg]) {
   def seq(moves: Vector[Move]) = {
     (1 to moves.size).toVector map (moves.take(_)) map (apply)
   }
-}
 
+  def isLegal(source: Peg, sink: Peg) : Boolean = 
+    source != sink &&
+    onPeg(source).headOption.map(src => 
+      onPeg(sink).headOption.map(sink => 
+        src < sink
+      ).getOrElse(true)
+      ).getOrElse(false)
+}
 object TowerState {
   def simple(rings: Int, peg: Peg) =
     TowerState(rings, ((1 to rings) map (_ -> peg)).toMap)

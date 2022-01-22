@@ -40,10 +40,30 @@ object TowerJS  {
       `type` := "range", value := "10", min := "0", max := "30", step:= "1", id :="speed"
     ).render
 
+    val moveButton = {
+      for {
+        (i, j) <- Peg.pairs
+      } yield {
+        val b = input(
+          `type` := "button", value := s"$i -> $j", `class` := "input-btn btn btn-info").render        
+        (i, j) -> b.render
+      }
+    }.toMap
+
     def counterSpanHTML = span(`class` := "h4")(span("Moves: "), span(`class` := "bg-info")(s"$counter")).render
 
     val counterDiv = div(`class` := "col-md-2")(counterSpanHTML).render
 
+    def moveList = div(strong("Legal moves: "),{
+      for {
+            (i, j) <- Peg.pairs
+            if towerState.isLegal(i, j)
+       } yield span(span(moveButton((i,  j))), span(" "))
+      }).render
+
+    def manualHMTL = div(h2("Manual moves"), p("If you like, you can try to solve the tower yourself."), moveList).render
+
+    val manualDiv = div(`class` := "row").render
 
 
     def showTower(tow: TowerState) = {
@@ -51,6 +71,8 @@ object TowerJS  {
       towDiv.appendChild(SvgView.towerView(tow).render)
       counterDiv.innerHTML = ""
       counterDiv.appendChild(counterSpanHTML)
+      manualDiv.innerHTML = ""
+      manualDiv.appendChild(manualHMTL.render)
     }
 
     def showMoves(
@@ -112,14 +134,15 @@ object TowerJS  {
     def startStop = (_: dom.Event) => if (running) stop() else start()
 
 
-    val d = div(
+    val controlDiv = div(
         towDiv,
         div(`class` := "row")(
           div(`class`:= "col-md-5")(
           label("Rings :"), ringsBox, span(" "),
           startStopBox, span(" "), resetBox, span(" "), randomBox),
           counterDiv,
-          div(`class` := "col-md-2")(label(`for` := "speed")("Speed:"), speedBar))
+          div(`class` := "col-md-2")(label(`for` := "speed")("Speed:"), speedBar)),
+        manualDiv
     )
 
     startStopBox.onclick = startStop
@@ -145,7 +168,18 @@ object TowerJS  {
         showTower(towerState)
     }
 
-    jsDiv.appendChild(d.render)
+    moveButton.foreach{
+      case ((source, sink), b) =>
+        b.onclick = (_ : dom.Event) =>
+          {
+          val move = Move(source, sink)
+          towerState = move(towerState)
+          counter += 1
+          showTower(towerState)
+        }
+        }
+
+    jsDiv.appendChild(controlDiv.render)
   }
 }
 
