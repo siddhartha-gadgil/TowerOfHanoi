@@ -220,7 +220,7 @@ object SvgView {
     }.flatten
 
   def towerView(tower: TowerState) =
-    svg(height := H, width := W, xmlns:="http://www.w3.org/2000/svg")(
+    svg(height := H, width := "100%", viewBox := s"0 0 $W $H",  xmlns:="http://www.w3.org/2000/svg")(
         rect(x := 0, y := 0, height := H, width := W, fill := "skyblue"),
         rect(x := 0,
              y := B,
