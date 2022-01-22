@@ -63,7 +63,7 @@ object TowerJS  {
 
     def manualHMTL = div(h2("Manual moves"), p("If you like, you can try to solve the tower yourself."), moveList).render
 
-    val manualDiv = div(`class` := "row").render
+    val manualDiv = manualHMTL
 
 
     def showTower(tow: TowerState) = {
@@ -141,8 +141,7 @@ object TowerJS  {
           label("Rings :"), ringsBox, span(" "),
           startStopBox, span(" "), resetBox, span(" "), randomBox),
           counterDiv,
-          div(`class` := "col-md-2")(label(`for` := "speed")("Speed:"), speedBar)),
-        manualDiv
+          div(`class` := "col-md-2")(label(`for` := "speed")("Speed:"), speedBar))
     )
 
     startStopBox.onclick = startStop
@@ -183,6 +182,7 @@ object TowerJS  {
         }
 
     jsDiv.appendChild(controlDiv.render)
+    jsDiv.appendChild(manualDiv)
   }
 }
 
