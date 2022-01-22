@@ -5430,7 +5430,7 @@ function $p_Ltoh_TowerJS$__startStop$1__sr_BooleanRef__Lorg_scalajs_dom_HTMLInpu
     })
   })($thiz, running$1, startStopBox$1, intervalId$1, towerState$1, numRings$1, counter$1, towDiv$1, counterDiv$1, manualDiv$1, moveButton$1, speed$1))
 }
-function $p_Ltoh_TowerJS$__$anonfun$main$16__sr_ObjectRef__sr_IntRef__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__sci_Map__T2__V($thiz, towerState$1, counter$1, towDiv$1, counterDiv$1, manualDiv$1, moveButton$1, x0$1) {
+function $p_Ltoh_TowerJS$__$anonfun$main$16__sr_ObjectRef__sr_IntRef__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__sci_Map__sr_IntRef__T2__V($thiz, towerState$1, counter$1, manualDiv$1, towDiv$1, counterDiv$1, moveButton$1, numRings$1, x0$1) {
   var x1 = x0$1;
   matchEnd4: {
     if ((x1 !== null)) {
@@ -5439,12 +5439,12 @@ function $p_Ltoh_TowerJS$__$anonfun$main$16__sr_ObjectRef__sr_IntRef__Lorg_scala
       if ((p2 !== null)) {
         var source = $as_Ltoh_Peg(p2._1__O());
         var sink = $as_Ltoh_Peg(p2._2__O());
-        b.onclick = (function(source$1, sink$1, towerState$1, counter$1, towDiv$1, counterDiv$1, manualDiv$1, moveButton$1) {
+        b.onclick = (function(source$1, sink$1, towerState$1, counter$1, manualDiv$1, towDiv$1, counterDiv$1, moveButton$1, numRings$1) {
           return (function(arg1$2) {
             var arg1 = arg1$2;
-            return $m_Ltoh_TowerJS$().toh$TowerJS$$$anonfun$main$17__Lorg_scalajs_dom_Event__Ltoh_Peg__Ltoh_Peg__sr_ObjectRef__sr_IntRef__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__sci_Map__Lorg_scalajs_dom_Node(arg1, source$1, sink$1, towerState$1, counter$1, towDiv$1, counterDiv$1, manualDiv$1, moveButton$1)
+            return $m_Ltoh_TowerJS$().toh$TowerJS$$$anonfun$main$17__Lorg_scalajs_dom_Event__Ltoh_Peg__Ltoh_Peg__sr_ObjectRef__sr_IntRef__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__sci_Map__sr_IntRef__O(arg1, source$1, sink$1, towerState$1, counter$1, manualDiv$1, towDiv$1, counterDiv$1, moveButton$1, numRings$1)
           })
-        })(source, sink, towerState$1, counter$1, towDiv$1, counterDiv$1, manualDiv$1, moveButton$1);
+        })(source, sink, towerState$1, counter$1, manualDiv$1, towDiv$1, counterDiv$1, moveButton$1, numRings$1);
         break matchEnd4
       }
     };
@@ -5517,12 +5517,12 @@ $c_Ltoh_TowerJS$.prototype.main__V = (function() {
       return $m_Ltoh_TowerJS$().toh$TowerJS$$$anonfun$main$14__Lorg_scalajs_dom_Event__sr_BooleanRef__sr_ObjectRef__sr_IntRef__sr_IntRef__Lorg_scalajs_dom_HTMLInputElement__sr_IntRef__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__sci_Map__Lorg_scalajs_dom_Node(arg1, running$1, towerState$1, numRings$1, counter$1, startStopBox$1, intervalId$1, towDiv$1, counterDiv$1, manualDiv$1, moveButton$1)
     })
   })(running, towerState, numRings, counter, startStopBox, intervalId, towDiv, counterDiv, manualDiv, moveButton);
-  moveButton.foreach__F1__V(new $c_sjsr_AnonFunction1((function(this$3, towerState, counter, towDiv, counterDiv, manualDiv, moveButton) {
+  moveButton.foreach__F1__V(new $c_sjsr_AnonFunction1((function(this$3, towerState, counter, manualDiv, towDiv, counterDiv, moveButton, numRings) {
     return (function(x0$1$2) {
       var x0$1 = $as_T2(x0$1$2);
-      $p_Ltoh_TowerJS$__$anonfun$main$16__sr_ObjectRef__sr_IntRef__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__sci_Map__T2__V(this$3, towerState, counter, towDiv, counterDiv, manualDiv, moveButton, x0$1)
+      $p_Ltoh_TowerJS$__$anonfun$main$16__sr_ObjectRef__sr_IntRef__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__sci_Map__sr_IntRef__T2__V(this$3, towerState, counter, manualDiv, towDiv, counterDiv, moveButton, numRings, x0$1)
     })
-  })(this, towerState, counter, towDiv, counterDiv, manualDiv, moveButton)));
+  })(this, towerState, counter, manualDiv, towDiv, counterDiv, moveButton, numRings)));
   jsDiv.appendChild(controlDiv.render__Lorg_scalajs_dom_Element())
 });
 $c_Ltoh_TowerJS$.prototype.$js$exported$meth$main__O = (function() {
@@ -5568,11 +5568,18 @@ $c_Ltoh_TowerJS$.prototype.toh$TowerJS$$$anonfun$main$14__Lorg_scalajs_dom_Event
   counter$1.sr_IntRef__f_elem = 0;
   return $p_Ltoh_TowerJS$__showTower$1__Ltoh_TowerState__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__sr_IntRef__sr_ObjectRef__sci_Map__Lorg_scalajs_dom_Node(this, $as_Ltoh_TowerState(towerState$1.sr_ObjectRef__f_elem), towDiv$1, counterDiv$1, manualDiv$1, counter$1, towerState$1, moveButton$1)
 });
-$c_Ltoh_TowerJS$.prototype.toh$TowerJS$$$anonfun$main$17__Lorg_scalajs_dom_Event__Ltoh_Peg__Ltoh_Peg__sr_ObjectRef__sr_IntRef__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__sci_Map__Lorg_scalajs_dom_Node = (function(x$9, source$1, sink$1, towerState$1, counter$1, towDiv$1, counterDiv$1, manualDiv$1, moveButton$1) {
+$c_Ltoh_TowerJS$.prototype.toh$TowerJS$$$anonfun$main$17__Lorg_scalajs_dom_Event__Ltoh_Peg__Ltoh_Peg__sr_ObjectRef__sr_IntRef__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__sci_Map__sr_IntRef__O = (function(x$9, source$1, sink$1, towerState$1, counter$1, manualDiv$1, towDiv$1, counterDiv$1, moveButton$1, numRings$1) {
   var move = new $c_Ltoh_Move(source$1, sink$1);
   towerState$1.sr_ObjectRef__f_elem = move.apply__Ltoh_TowerState__Ltoh_TowerState($as_Ltoh_TowerState(towerState$1.sr_ObjectRef__f_elem));
   counter$1.sr_IntRef__f_elem = ((counter$1.sr_IntRef__f_elem + 1) | 0);
-  return $p_Ltoh_TowerJS$__showTower$1__Ltoh_TowerState__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__sr_IntRef__sr_ObjectRef__sci_Map__Lorg_scalajs_dom_Node(this, $as_Ltoh_TowerState(towerState$1.sr_ObjectRef__f_elem), towDiv$1, counterDiv$1, manualDiv$1, counter$1, towerState$1, moveButton$1)
+  $p_Ltoh_TowerJS$__showTower$1__Ltoh_TowerState__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__Lorg_scalajs_dom_HTMLDivElement__sr_IntRef__sr_ObjectRef__sci_Map__Lorg_scalajs_dom_Node(this, $as_Ltoh_TowerState(towerState$1.sr_ObjectRef__f_elem), towDiv$1, counterDiv$1, manualDiv$1, counter$1, towerState$1, moveButton$1);
+  var x = $as_Ltoh_TowerState(towerState$1.sr_ObjectRef__f_elem);
+  var x$2 = $p_Ltoh_TowerJS$__goal$1__sr_IntRef__Ltoh_TowerState(this, numRings$1);
+  if (((x === null) ? (x$2 === null) : x.equals__O__Z(x$2))) {
+    return manualDiv$1.appendChild($as_Lscalatags_JsDom$TypedTag($m_Lscalatags_JsDom$all$().h3__Lscalatags_generic_TypedTag()).apply__sci_Seq__Lscalatags_JsDom$TypedTag($m_sjsr_package$().toScalaVarArgs__sjs_js_Array__sci_Seq([$m_Lscalatags_JsDom$all$().stringFrag__T__Lscalatags_JsDom$StringFrag("Success!!"), $as_Lscalatags_JsDom$TypedTag($m_Lscalatags_JsDom$all$().span__Lscalatags_generic_TypedTag()).apply__sci_Seq__Lscalatags_JsDom$TypedTag($m_sjsr_package$().toScalaVarArgs__sjs_js_Array__sci_Seq([$m_Lscalatags_JsDom$all$().stringFrag__T__Lscalatags_JsDom$StringFrag(" ")])), $as_Lscalatags_JsDom$TypedTag($m_Lscalatags_JsDom$all$().i__Lscalatags_generic_TypedTag()).apply__sci_Seq__Lscalatags_JsDom$TypedTag($m_sjsr_package$().toScalaVarArgs__sjs_js_Array__sci_Seq([$m_Lscalatags_JsDom$all$().class__Lscalatags_generic_Attr().$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("fa fa-thumbs-up fa_custom", $m_Lscalatags_JsDom$all$().stringAttr__Lscalatags_generic_AttrValue())])).apply__sci_Seq__Lscalatags_JsDom$TypedTag($m_sci_Nil$())])).render__Lorg_scalajs_dom_Element())
+  } else {
+    return (void 0)
+  }
 });
 $c_Ltoh_TowerJS$.prototype.main = (function() {
   return this.$js$exported$meth$main__O()
@@ -17902,6 +17909,9 @@ function $f_Lscalatags_jsdom_SvgTags__$init$__V($thiz) {
 function $f_Lscalatags_jsdom_Tags__h2__Lscalatags_generic_TypedTag($thiz) {
   return $thiz.typedTag__T__Z__Lscalatags_generic_Namespace__Lscalatags_generic_TypedTag("h2", $thiz.typedTag$default$2__Z(), $m_Lscalatags_generic_Namespace$().htmlNamespaceConfig__Lscalatags_generic_Namespace())
 }
+function $f_Lscalatags_jsdom_Tags__h3__Lscalatags_generic_TypedTag($thiz) {
+  return $thiz.typedTag__T__Z__Lscalatags_generic_Namespace__Lscalatags_generic_TypedTag("h3", $thiz.typedTag$default$2__Z(), $m_Lscalatags_generic_Namespace$().htmlNamespaceConfig__Lscalatags_generic_Namespace())
+}
 function $f_Lscalatags_jsdom_Tags__p__Lscalatags_generic_TypedTag($thiz) {
   return $thiz.typedTag__T__Z__Lscalatags_generic_Namespace__Lscalatags_generic_TypedTag("p", $thiz.typedTag$default$2__Z(), $m_Lscalatags_generic_Namespace$().htmlNamespaceConfig__Lscalatags_generic_Namespace())
 }
@@ -17910,6 +17920,9 @@ function $f_Lscalatags_jsdom_Tags__div__Lscalatags_generic_TypedTag($thiz) {
 }
 function $f_Lscalatags_jsdom_Tags__strong__Lscalatags_generic_TypedTag($thiz) {
   return $thiz.typedTag__T__Z__Lscalatags_generic_Namespace__Lscalatags_generic_TypedTag("strong", $thiz.typedTag$default$2__Z(), $m_Lscalatags_generic_Namespace$().htmlNamespaceConfig__Lscalatags_generic_Namespace())
+}
+function $f_Lscalatags_jsdom_Tags__i__Lscalatags_generic_TypedTag($thiz) {
+  return $thiz.typedTag__T__Z__Lscalatags_generic_Namespace__Lscalatags_generic_TypedTag("i", $thiz.typedTag$default$2__Z(), $m_Lscalatags_generic_Namespace$().htmlNamespaceConfig__Lscalatags_generic_Namespace())
 }
 function $f_Lscalatags_jsdom_Tags__span__Lscalatags_generic_TypedTag($thiz) {
   return $thiz.typedTag__T__Z__Lscalatags_generic_Namespace__Lscalatags_generic_TypedTag("span", $thiz.typedTag$default$2__Z(), $m_Lscalatags_generic_Namespace$().htmlNamespaceConfig__Lscalatags_generic_Namespace())
@@ -26401,6 +26414,13 @@ function $p_Lscalatags_JsDom$all$__h2$lzycompute__Lscalatags_JsDom$TypedTag($thi
   };
   return $thiz.Lscalatags_JsDom$all$__f_h2
 }
+function $p_Lscalatags_JsDom$all$__h3$lzycompute__Lscalatags_JsDom$TypedTag($thiz) {
+  if ($thiz.Lscalatags_JsDom$all$__f_bitmap$0.$amp__RTLong__RTLong(new $c_RTLong(512, 0)).equals__RTLong__Z($m_RTLong$().fromInt__I__RTLong(0))) {
+    $thiz.Lscalatags_JsDom$all$__f_h3 = $as_Lscalatags_JsDom$TypedTag($f_Lscalatags_jsdom_Tags__h3__Lscalatags_generic_TypedTag($thiz));
+    $thiz.Lscalatags_JsDom$all$__f_bitmap$0 = $thiz.Lscalatags_JsDom$all$__f_bitmap$0.$bar__RTLong__RTLong(new $c_RTLong(512, 0))
+  };
+  return $thiz.Lscalatags_JsDom$all$__f_h3
+}
 function $p_Lscalatags_JsDom$all$__p$lzycompute__Lscalatags_JsDom$TypedTag($thiz) {
   if ($thiz.Lscalatags_JsDom$all$__f_bitmap$0.$amp__RTLong__RTLong(new $c_RTLong(32768, 0)).equals__RTLong__Z($m_RTLong$().fromInt__I__RTLong(0))) {
     $thiz.Lscalatags_JsDom$all$__f_p = $as_Lscalatags_JsDom$TypedTag($f_Lscalatags_jsdom_Tags__p__Lscalatags_generic_TypedTag($thiz));
@@ -26421,6 +26441,13 @@ function $p_Lscalatags_JsDom$all$__strong$lzycompute__Lscalatags_JsDom$TypedTag(
     $thiz.Lscalatags_JsDom$all$__f_bitmap$0 = $thiz.Lscalatags_JsDom$all$__f_bitmap$0.$bar__RTLong__RTLong(new $c_RTLong(1073741824, 0))
   };
   return $thiz.Lscalatags_JsDom$all$__f_strong
+}
+function $p_Lscalatags_JsDom$all$__i$lzycompute__Lscalatags_JsDom$TypedTag($thiz) {
+  if ($thiz.Lscalatags_JsDom$all$__f_bitmap$0.$amp__RTLong__RTLong(new $c_RTLong(0, 32)).equals__RTLong__Z($m_RTLong$().fromInt__I__RTLong(0))) {
+    $thiz.Lscalatags_JsDom$all$__f_i = $as_Lscalatags_JsDom$TypedTag($f_Lscalatags_jsdom_Tags__i__Lscalatags_generic_TypedTag($thiz));
+    $thiz.Lscalatags_JsDom$all$__f_bitmap$0 = $thiz.Lscalatags_JsDom$all$__f_bitmap$0.$bar__RTLong__RTLong(new $c_RTLong(0, 32))
+  };
+  return $thiz.Lscalatags_JsDom$all$__f_i
 }
 function $p_Lscalatags_JsDom$all$__span$lzycompute__Lscalatags_JsDom$TypedTag($thiz) {
   if ($thiz.Lscalatags_JsDom$all$__f_bitmap$0.$amp__RTLong__RTLong(new $c_RTLong(0, 256)).equals__RTLong__Z($m_RTLong$().fromInt__I__RTLong(0))) {
@@ -27069,6 +27096,9 @@ $c_Lscalatags_JsDom$all$.prototype.scalatags$generic$Aggregate$_setter_$doublePi
 $c_Lscalatags_JsDom$all$.prototype.h2__Lscalatags_JsDom$TypedTag = (function() {
   return (this.Lscalatags_JsDom$all$__f_bitmap$0.$amp__RTLong__RTLong(new $c_RTLong(256, 0)).equals__RTLong__Z($m_RTLong$().fromInt__I__RTLong(0)) ? $p_Lscalatags_JsDom$all$__h2$lzycompute__Lscalatags_JsDom$TypedTag(this) : this.Lscalatags_JsDom$all$__f_h2)
 });
+$c_Lscalatags_JsDom$all$.prototype.h3__Lscalatags_JsDom$TypedTag = (function() {
+  return (this.Lscalatags_JsDom$all$__f_bitmap$0.$amp__RTLong__RTLong(new $c_RTLong(512, 0)).equals__RTLong__Z($m_RTLong$().fromInt__I__RTLong(0)) ? $p_Lscalatags_JsDom$all$__h3$lzycompute__Lscalatags_JsDom$TypedTag(this) : this.Lscalatags_JsDom$all$__f_h3)
+});
 $c_Lscalatags_JsDom$all$.prototype.p__Lscalatags_JsDom$TypedTag = (function() {
   return (this.Lscalatags_JsDom$all$__f_bitmap$0.$amp__RTLong__RTLong(new $c_RTLong(32768, 0)).equals__RTLong__Z($m_RTLong$().fromInt__I__RTLong(0)) ? $p_Lscalatags_JsDom$all$__p$lzycompute__Lscalatags_JsDom$TypedTag(this) : this.Lscalatags_JsDom$all$__f_p)
 });
@@ -27077,6 +27107,9 @@ $c_Lscalatags_JsDom$all$.prototype.div__Lscalatags_JsDom$TypedTag = (function() 
 });
 $c_Lscalatags_JsDom$all$.prototype.strong__Lscalatags_JsDom$TypedTag = (function() {
   return (this.Lscalatags_JsDom$all$__f_bitmap$0.$amp__RTLong__RTLong(new $c_RTLong(1073741824, 0)).equals__RTLong__Z($m_RTLong$().fromInt__I__RTLong(0)) ? $p_Lscalatags_JsDom$all$__strong$lzycompute__Lscalatags_JsDom$TypedTag(this) : this.Lscalatags_JsDom$all$__f_strong)
+});
+$c_Lscalatags_JsDom$all$.prototype.i__Lscalatags_JsDom$TypedTag = (function() {
+  return (this.Lscalatags_JsDom$all$__f_bitmap$0.$amp__RTLong__RTLong(new $c_RTLong(0, 32)).equals__RTLong__Z($m_RTLong$().fromInt__I__RTLong(0)) ? $p_Lscalatags_JsDom$all$__i$lzycompute__Lscalatags_JsDom$TypedTag(this) : this.Lscalatags_JsDom$all$__f_i)
 });
 $c_Lscalatags_JsDom$all$.prototype.span__Lscalatags_JsDom$TypedTag = (function() {
   return (this.Lscalatags_JsDom$all$__f_bitmap$0.$amp__RTLong__RTLong(new $c_RTLong(0, 256)).equals__RTLong__Z($m_RTLong$().fromInt__I__RTLong(0)) ? $p_Lscalatags_JsDom$all$__span$lzycompute__Lscalatags_JsDom$TypedTag(this) : this.Lscalatags_JsDom$all$__f_span)
@@ -27135,6 +27168,9 @@ $c_Lscalatags_JsDom$all$.prototype.label__Lscalatags_generic_TypedTag = (functio
 $c_Lscalatags_JsDom$all$.prototype.span__Lscalatags_generic_TypedTag = (function() {
   return this.span__Lscalatags_JsDom$TypedTag()
 });
+$c_Lscalatags_JsDom$all$.prototype.i__Lscalatags_generic_TypedTag = (function() {
+  return this.i__Lscalatags_JsDom$TypedTag()
+});
 $c_Lscalatags_JsDom$all$.prototype.strong__Lscalatags_generic_TypedTag = (function() {
   return this.strong__Lscalatags_JsDom$TypedTag()
 });
@@ -27143,6 +27179,9 @@ $c_Lscalatags_JsDom$all$.prototype.div__Lscalatags_generic_TypedTag = (function(
 });
 $c_Lscalatags_JsDom$all$.prototype.p__Lscalatags_generic_TypedTag = (function() {
   return this.p__Lscalatags_JsDom$TypedTag()
+});
+$c_Lscalatags_JsDom$all$.prototype.h3__Lscalatags_generic_TypedTag = (function() {
+  return this.h3__Lscalatags_JsDom$TypedTag()
 });
 $c_Lscalatags_JsDom$all$.prototype.h2__Lscalatags_generic_TypedTag = (function() {
   return this.h2__Lscalatags_JsDom$TypedTag()

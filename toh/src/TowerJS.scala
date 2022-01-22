@@ -176,6 +176,9 @@ object TowerJS  {
           towerState = move(towerState)
           counter += 1
           showTower(towerState)
+          if (towerState == goal) {
+            manualDiv.appendChild(h3("Success!!", span(" "), i(`class` :="fa fa-thumbs-up fa_custom")()).render)
+          } 
         }
         }
 
